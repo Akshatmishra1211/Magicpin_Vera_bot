@@ -47,6 +47,22 @@ contexts: Dict[Tuple[str, str], Dict[str, Any]] = {}
 conversations: Dict[str, ConversationState] = {}
 
 
+@app.get("/")
+async def root():
+    """Root landing endpoint for browser status check."""
+    return {
+        "status": "ok",
+        "service": "Vera Merchant AI Assistant",
+        "endpoints": [
+            "/v1/healthz",
+            "/v1/metadata",
+            "/v1/context",
+            "/v1/tick",
+            "/v1/reply"
+        ]
+    }
+
+
 # -----------------------------------------------------------------------------
 # Pydantic Schemas for API Contracts
 # -----------------------------------------------------------------------------
